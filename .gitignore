@@ -1,1 +1,5 @@
 set_env.sh
+deployment/k8s/new copy.yaml
+deployment/k8s/new.yaml
+deployment/k8s/ignorebackend-feed-deployment1.yaml
+deployment/k8s/ignorebackend-user-deployment1.yaml
