@@ -1,14 +1,14 @@
 export const config = {
-  'username': 'cdrtesting',
-  'password': 'cdrtesting',
-  'database': 'cdrtesting',
-  'host': 'cdrtesting.cp0sg3nifn4y.us-west-2.rds.amazonaws.com',
+  'username': process.env.POSTGRES_USERNAME,
+  'password': process.env.POSTGRES_PASSWORD,
+  'database': process.env.POSTGRES_DB,
+  'host': process.env.POSTGRES_HOST,
   'dialect': 'postgres',
-  'aws_region': 'us-west-2',
-  'aws_profile': 'udagram-emike-dev',
-  'aws_media_bucket': 'test-179134-dev',
-  'url': 'http://localhost:8100',
+  'aws_region': process.env.AWS_REGION,
+  'aws_profile': process.env.AWS_PROFILE,
+  'aws_media_bucket': process.env.AWS_BUCKET,
+  'url': process.env.URL,
   'jwt': {
-    'secret': 'testing',
+    'secret': process.env.JWT_SECRET,
   },
 };
