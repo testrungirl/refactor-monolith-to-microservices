@@ -23,11 +23,7 @@ spec:
             name: env-secret
         envFrom:
         - secretRef:
-            name: aws-secret
-        volumeMounts:
-        - name: aws-secret
-          mountPath: "/root/.aws"
-          readOnly: true
+            name: aws-secret        
         image: testrungirl/udagram-api-user
         name: backend-user
         imagePullPolicy: IfNotPresent
@@ -40,8 +36,4 @@ spec:
           limits:
             memory: "1024Gi"
             cpu: "500m"  
-      restartPolicy: Always
-      volumes:
-      - name: aws-secret
-        secret:
-          secretName: aws-secret
+      restartPolicy: Always      
