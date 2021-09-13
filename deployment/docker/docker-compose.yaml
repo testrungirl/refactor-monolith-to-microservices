@@ -10,6 +10,8 @@ services:
         - backend-feed
   backend-user:
     image: testrungirl/udagram-api-user
+    volumes:
+      - $HOME/.aws:/root/.aws
     environment:
       POSTGRES_USERNAME: $POSTGRES_USERNAME
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD 
