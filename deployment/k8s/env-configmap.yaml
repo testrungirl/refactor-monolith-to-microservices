@@ -6,7 +6,7 @@ data:
   AWS_BUCKET: test-179134-dev
   AWS_PROFILE: udagram-emike-dev
   AWS_REGION: us-west-2
-  JWT_TOKEN: testing
+  JWT_SECRET: testing
   POSTGRES_DB: cdrtesting
   POSTGRES_HOST: cdrtesting.cp0sg3nifn4y.us-west-2.rds.amazonaws.com
   URL: http://localhost:8100
