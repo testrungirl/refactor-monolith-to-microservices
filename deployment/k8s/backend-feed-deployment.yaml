@@ -1,38 +1,85 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-feed
   labels:
-    app: backend-feed
+    service: backend-feed
+  name: backend-feed
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: backend-feed
+      service: backend-feed
+  replicas: 1
   template:
     metadata:
       labels:
-        app: backend-feed
+        service: backend-feed
     spec:
-      containers: 
-      - envFrom:
-        - configMapRef:
-            name: env-config
-        envFrom:
-        - secretRef:
-            name: env-secret
-        envFrom:
-        - secretRef:
-            name: aws-secret
+      containers:
+      - image: testrungirl/udagram-api-feed
+        name: backend-feed
+        imagePullPolicy: Always  
+        resources:
+          requests:
+            memory: "100Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Gi"
+            cpu: "500m"                  
+        env:
+        - name: URL
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: URL
+        - name: AWS_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_BUCKET
+        - name: AWS_PROFILE
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_PROFILE
+        - name: AWS_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_REGION
+        - name: JWT_SECRET
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: JWT_SECRET
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_DB
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRES_HOST
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: POSTGRES_USERNAME      
         volumeMounts:
         - name: aws-secret
-          mountPath: "/root/.aws"
+          mountPath: "/root/.aws/"
           readOnly: true        
-        image: testrungirl/udagram-api-feed
-        name: backend-feed
-        imagePullPolicy: IfNotPresent
-        ports:
-        - containerPort: 8080
+      restartPolicy: Always
+      volumes:
+      - name: aws-secret
+        secret:
+          secretName: aws-secret
         resources:
           requests:
             memory: "100Mi"
