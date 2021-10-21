@@ -8,6 +8,8 @@ The project is split into two parts:
 
 ## Getting Started
 > _tip_: it's recommended that you start with getting the backend API running since the frontend web application depends on the API.
+### Repository URL
+https://github.com/testrungirl/refactor-monolith-to-microservices
 
 ### Prerequisite
 1. The depends on the Node Package Manager (NPM). You will need to download and install Node from [https://nodejs.com/en/download](https://nodejs.org/en/download/). This will allow you to be able to run `npm` commands.
